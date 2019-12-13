@@ -1,11 +1,12 @@
 # jest-axe
 
-## Installation:
+## Installation
+
 ```bash
 npm install --save-dev jest-axe
 ```
 
-## Usage:
+## Usage
 
 ```javascript
 const { axe, toHaveNoViolations } = require('jest-axe')
@@ -121,6 +122,7 @@ it('should demonstrate this matcher`s usage with react testing library', async (
   cleanup()
 })
 ```
+
 > Note: If you're using `vue testing library` you should be using the
 > [`cleanup`](https://testing-library.com/docs/vue-testing-library/api#cleanup) method. This method removes the rendered application from the DOM and ensures a clean HTML Document for further testing.
 
