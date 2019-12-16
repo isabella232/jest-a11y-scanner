@@ -5,7 +5,7 @@
   "repository": "nickcolley/jest-axe",
   "main": "src/index.js",
   "files": [
-    "src/index.js",
+    "src/",
     "extend-expect.js"
   ],
   "scripts": {
