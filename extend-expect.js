@@ -11,4 +11,4 @@ point directly to `jest-axe/extend-expect`
 const { toHaveNoViolations, toAuditNoViolations } = require('jest-axe')
 
 expect.extend(toHaveNoViolations)
-expect.extend(toAuditNoViolations);
+expect.extend(toAuditNoViolations)
