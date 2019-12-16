@@ -3,9 +3,9 @@
   "version": "3.2.0",
   "description": "Custom Jest matcher for aXe for testing accessibility",
   "repository": "nickcolley/jest-axe",
-  "main": "index.js",
+  "main": "src/index.js",
   "files": [
-    "index.js",
+    "src/index.js",
     "extend-expect.js"
   ],
   "scripts": {

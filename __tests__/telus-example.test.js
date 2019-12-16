@@ -1,4 +1,4 @@
-const { configureAxe, axe, toHaveNoViolations, toAuditNoViolations, reportViolations } = require('../index.js')
+const { configureAxe, axe, toHaveNoViolations, toAuditNoViolations, reportViolations } = require('../src/index.js')
 
 expect.extend(toAuditNoViolations)
 expect.extend(toHaveNoViolations)

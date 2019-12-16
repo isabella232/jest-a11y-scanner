@@ -1,4 +1,4 @@
-const { axe, toHaveNoViolations } = require('../index')
+const { axe, toHaveNoViolations } = require('../src/index')
 
 const Image = {
   data: () => ({ src: '#' }),

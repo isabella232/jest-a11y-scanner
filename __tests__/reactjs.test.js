@@ -1,4 +1,4 @@
-const { axe, toHaveNoViolations } = require('../index')
+const { axe, toHaveNoViolations } = require('../src/index.js')
 
 const React = require('react')
 const ReactDOMServer = require('react-dom/server')

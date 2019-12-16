@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-const { configureAxe, axe, toHaveNoViolations } = require('../index.js')
+const { configureAxe, axe, toHaveNoViolations } = require('../src/index.js')
 
 describe('jest-axe', () => {
   describe('axe', () => {
