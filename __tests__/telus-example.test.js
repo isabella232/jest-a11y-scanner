@@ -16,9 +16,9 @@ describe("Telus test series", () => {
 
     const results = await axe(html);
 
-    expect(results).toAuditNoViolations()
+    expect(results).toHaveNoViolations(false)
   })
-  it.skip('should error and log output', async () => {
+  it('should error and log output', async () => {
     const render = () => `
       <div>
         <img src="#"/>
@@ -30,7 +30,7 @@ describe("Telus test series", () => {
 
     const results = await axe(html);
 
-    expect(results).toHaveNoViolations()
+    expect(results).toHaveNoViolations(true, false)
   })
   it('should report violations', async () => {
     const render = () => `

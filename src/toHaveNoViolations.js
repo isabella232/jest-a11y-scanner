@@ -6,10 +6,12 @@ const { printReceived, matcherHint } = require('jest-matcher-utils')
  * Custom Jest expect matcher, that can check aXe results for violations.
  * @param {object} object requires an instance of aXe's results object
  * (https://github.com/dequelabs/axe-core/blob/develop-2x/doc/API.md#results-object)
+ * @param {boolean} error default = true, whether this expect matcher should emit errors or not
+ * @param {boolean} verbose default = true, whether or not the output should contain all the data or some of the data
  * @returns {object} returns Jest matcher object
  */
 const toHaveNoViolations = {
-  toHaveNoViolations (results) {
+  toHaveNoViolations (results, error = true, verbose = true) {
     const violations = results.violations
 
     if (typeof violations === 'undefined') {
@@ -28,7 +30,7 @@ const toHaveNoViolations = {
         const errorBody = violation.nodes.map(node => {
           const selector = node.target.join(', ')
           const expectedText = `Expected the HTML found at $('${selector}') to have no violations:` + lineBreak
-          return (
+          return verbose ? (
             expectedText +
             chalk.grey(node.html) +
             lineBreak +
@@ -39,7 +41,13 @@ const toHaveNoViolations = {
             chalk.yellow(node.failureSummary) +
             lineBreak +
             `You can find more information on this issue here: \n` +
-            chalk.blue(violation.helpUrl)
+            chalk.blue(violation.helpUrl)) : (
+            expectedText +
+            chalk.grey(node.html) +
+            lineBreak +
+            `Received:` +
+            lineBreak +
+            printReceived(`${violation.help} (${violation.id})`)
           )
         }).join(lineBreak)
 
@@ -48,10 +56,10 @@ const toHaveNoViolations = {
     }
 
     const formatedViolations = reporter(violations)
-    const pass = formatedViolations.length === 0
+    const pass = error ? formatedViolations.length === 0 : true
 
     const message = () => {
-      if (pass) {
+      if (pass && error) {
         return
       }
       return matcherHint('.toHaveNoViolations') +
