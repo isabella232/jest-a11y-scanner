@@ -26,6 +26,7 @@
   "dependencies": {
     "axe-core": "3.3.1",
     "chalk": "2.4.2",
+    "fs": "0.0.1-security",
     "jest-matcher-utils": "24.8.0",
     "lodash.merge": "4.6.2"
   },
