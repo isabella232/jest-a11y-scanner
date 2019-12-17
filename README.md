@@ -28,6 +28,44 @@ it('should demonstrate this matcher`s usage', async () => {
 > Note, you can also require `'jest-axe/extend-expect'` which will call `expect.extend` for you.
 > This is especially helpful when using the jest `setupTestFrameworkScriptFile` configuration.
 
+### Custom Parameters
+
+You can turn erroring off by passing false to the first paramater of `toHaveNoViolations` if you want to output violations without failing tests. This is useful if you are encountering a lot of errors and they are preventing you from committing to CI.
+
+```javascript
+const { axe, toHaveNoViolations } = require('jest-axe')
+
+expect.extend(toHaveNoViolations)
+
+it('should demonstrate this matcher`s usage with erroring off', async () => {
+  const render = () => '<img src="#"/>'
+
+  // pass anything that outputs html to axe
+  const html = render()
+
+  // Pass false to prevent erroring, default is true when nothing is passed
+  expect(await axe(html)).toHaveNoViolations(false)
+})
+```
+
+You can reduce the verbosity of output by passing false to the second paramater of `toHaveNoViolations` if you want to shorten the output of failing tests. This is useful if you are encountering a lot of errors and you want to clear up the console.
+
+```javascript
+const { axe, toHaveNoViolations } = require('jest-axe')
+
+expect.extend(toHaveNoViolations)
+
+it('should demonstrate this matcher`s usage with erroring off', async () => {
+  const render = () => '<img src="#"/>'
+
+  // pass anything that outputs html to axe
+  const html = render()
+
+  // Pass false to the second parameter to limit output, default is true when nothing is passed. You need to pass the first parameter to get access to the seconds parameter due to how jest handles passed parameters.
+  expect(await axe(html)).toHaveNoViolations(true, false)
+})
+```
+
 ### Testing React
 
 ```javascript
