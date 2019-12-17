@@ -1,6 +1,5 @@
-const { configureAxe, axe, toHaveNoViolations, toAuditNoViolations, reportViolations } = require('../src/index.js')
+const { configureAxe, axe, toHaveNoViolations, reportViolations } = require('../src/index.js')
 
-expect.extend(toAuditNoViolations)
 expect.extend(toHaveNoViolations)
 
 describe("Telus test series", () => {
@@ -18,7 +17,7 @@ describe("Telus test series", () => {
 
     expect(results).toHaveNoViolations(false)
   })
-  it('should error and log output', async () => {
+  it.only('should error and log output', async () => {
     const render = () => `
       <div>
         <img src="#"/>
@@ -30,7 +29,7 @@ describe("Telus test series", () => {
 
     const results = await axe(html);
 
-    expect(results).toHaveNoViolations(true, false)
+    expect(results).toHaveNoViolations(false, false)
   })
   it('should report violations', async () => {
     const render = () => `
