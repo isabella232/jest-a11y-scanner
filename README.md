@@ -64,6 +64,45 @@ it('should demonstrate this matcher`s usage with erroring off', async () => {
 })
 ```
 
+### Writing Output to File
+
+If you are in a test and you want to write the axe results to a file, you can pass the axe results to the `reportViolations` function with a path to a file.
+
+```javascript
+const { axe, reportViolations } = require('jest-axe')
+
+it('writes to file', async () => {
+  const render = () => '<img src="#"/>'
+
+  const html = render()
+
+  reportViolations(await axe(html), "./out_file.txt");
+})
+```
+
+This should write out a report similar to this:
+
+```text
+Expected the HTML found at $('img') to have no violations:
+
+<img src="#">
+
+Received:
+
+Images must have alternate text (image-alt)
+
+Fix any of the following:
+  Element does not have an alt attribute
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute or the title attribute is empty
+  Element's default semantics were not overridden with role="presentation"
+  Element's default semantics were not overridden with role="none"
+
+You can find more information on this issue here: 
+https://dequeuniversity.com/rules/axe/3.3/image-alt?application=axeAPI
+```
+
 ### Testing React
 
 ```javascript
