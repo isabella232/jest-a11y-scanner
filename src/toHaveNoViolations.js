@@ -67,6 +67,8 @@ const toHaveNoViolations = {
             `${formatedViolations}`
     }
 
+    if (!error) console.log(message());
+
     return { actual: violations, message, pass }
   }
 }
