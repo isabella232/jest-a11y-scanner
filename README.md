@@ -40,7 +40,6 @@ expect.extend(toHaveNoViolations)
 it('should demonstrate this matcher`s usage with erroring off', async () => {
   const render = () => '<img src="#"/>'
 
-  // pass anything that outputs html to axe
   const html = render()
 
   // Pass false to prevent erroring, default is true when nothing is passed
@@ -58,7 +57,6 @@ expect.extend(toHaveNoViolations)
 it('should demonstrate this matcher`s usage with erroring off', async () => {
   const render = () => '<img src="#"/>'
 
-  // pass anything that outputs html to axe
   const html = render()
 
   // Pass false to the second parameter to limit output, default is true when nothing is passed. You need to pass the first parameter to get access to the seconds parameter due to how jest expect handles passed parameters.
