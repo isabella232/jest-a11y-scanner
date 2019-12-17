@@ -61,7 +61,7 @@ it('should demonstrate this matcher`s usage with erroring off', async () => {
   // pass anything that outputs html to axe
   const html = render()
 
-  // Pass false to the second parameter to limit output, default is true when nothing is passed. You need to pass the first parameter to get access to the seconds parameter due to how jest handles passed parameters.
+  // Pass false to the second parameter to limit output, default is true when nothing is passed. You need to pass the first parameter to get access to the seconds parameter due to how jest expect handles passed parameters.
   expect(await axe(html)).toHaveNoViolations(true, false)
 })
 ```
