@@ -1,4 +1,4 @@
 node_modules
 package-lock.json
-empty_report.txt
+*.txt
 *.tgz
