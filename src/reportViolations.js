@@ -1,5 +1,6 @@
 'use-strict'
 const fs = require('fs')
+const axeVersion = require('axe-core').version;
 
 /**
  * Writes out violation results to a text file
@@ -13,14 +14,14 @@ function reportViolations (results, path) {
   if (typeof violations === 'undefined') {
     throw new Error('No violations found in aXe results object')
   }
+  const lineBreak = '\n\n'
+  const horizontalLine = '\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500'
 
   const reporter = violations => {
     if (violations.length === 0) {
       return []
     }
 
-    const lineBreak = '\n\n'
-    const horizontalLine = '\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500'
 
     return violations.map(violation => {
       const errorBody = violation.nodes.map(node => {
@@ -47,7 +48,11 @@ function reportViolations (results, path) {
 
   const formatedViolations = reporter(violations)
 
-  let message = `${formatedViolations}`
+  let message = `Report Date: ${new Date() + lineBreak}Axe-Core Version: ${axeVersion +
+    lineBreak +
+    horizontalLine +
+    lineBreak +
+    formatedViolations}`
   if (message.length === 0) message = `No violations found!`
 
   fs.writeFile(path, message, () => {})

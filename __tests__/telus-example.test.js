@@ -24,7 +24,7 @@ describe("Telus test series", () => {
 
     expect(results).toHaveNoViolations(false)
   })
-  it.only('should error and log concise output', async () => {
+  it('should error and log concise output', async () => {
     // pass anything that outputs html to axe
     const html = render()
 
