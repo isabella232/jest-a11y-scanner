@@ -53,7 +53,8 @@ function reportViolations (results, path) {
     horizontalLine +
     lineBreak +
     formatedViolations}`
-  if (message.length === 0) message = `No violations found!`
+    
+  if (formatedViolations.length === 0) message = `No violations found!`
 
   fs.writeFile(path, message, () => {})
 }

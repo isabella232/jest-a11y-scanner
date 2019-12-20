@@ -83,6 +83,12 @@ it('writes to file', async () => {
 This should write out a report similar to this:
 
 ```text
+Report Date: Fri Dec 20 2019 10:45:06 GMT-0500 (Eastern Standard Time)
+
+Axe-Core Version: 3.4.0
+
+────────
+
 Expected the HTML found at $('img') to have no violations:
 
 <img src="#">
@@ -100,7 +106,7 @@ Fix any of the following:
   Element's default semantics were not overridden with role="none"
 
 You can find more information on this issue here: 
-https://dequeuniversity.com/rules/axe/3.3/image-alt?application=axeAPI
+https://dequeuniversity.com/rules/axe/3.4/image-alt?application=axeAPI
 ```
 
 ### Testing React
