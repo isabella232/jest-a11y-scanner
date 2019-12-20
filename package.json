@@ -1,8 +1,8 @@
 {
-  "name": "jest-axe",
-  "version": "3.2.0",
+  "name": "jest-a11y-scanner",
+  "version": "4.2.0",
   "description": "Custom Jest matcher for aXe for testing accessibility",
-  "repository": "nickcolley/jest-axe",
+  "repository": "dequelabs/jest-axe",
   "main": "src/index.js",
   "files": [
     "src/",
@@ -18,8 +18,8 @@
     "accessibility",
     "a11y"
   ],
-  "author": "Nick Colley",
-  "license": "MIT",
+  "author": "Alex Okros",
+  "license": "",
   "engines": {
     "node": ">= 8.0.0"
   },
