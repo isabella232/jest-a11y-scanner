@@ -8,7 +8,7 @@ const axeVersion = require('axe-core').version;
  * (https://github.com/dequelabs/axe-core/blob/develop-2x/doc/API.md#results-object)
  * @param {string} path path string to where you want your file to be written to.
  */
-function reportViolations (results, path) {
+function reportViolations (results, path, append = false) {
   const violations = results.violations
 
   if (typeof violations === 'undefined') {
@@ -48,15 +48,20 @@ function reportViolations (results, path) {
 
   const formatedViolations = reporter(violations)
 
-  let message = `Report Date: ${new Date() + lineBreak}Axe-Core Version: ${axeVersion +
+  let message = `${horizontalLine + horizontalLine + lineBreak}Report Date: ${new Date() + lineBreak}Axe-Core Version: ${axeVersion +
     lineBreak +
     horizontalLine +
     lineBreak +
-    formatedViolations}`
-    
+    formatedViolations +
+    lineBreak
+  }`
+
   if (formatedViolations.length === 0) message = `No violations found!`
 
-  fs.writeFile(path, message, () => {})
+   if (!append) fs.writeFile(path, message, () => {})
+   else {
+    fs.appendFile(path, message, () => {});
+   }
 }
 
 module.exports = reportViolations;

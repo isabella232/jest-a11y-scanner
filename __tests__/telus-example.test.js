@@ -48,6 +48,14 @@ describe("Telus test series", () => {
 
     reportViolations(results, "./report.txt");
   })
+  it('should append report violations', async () => {
+    // pass anything that outputs html to axe
+    const html = render()
+
+    const results = await axe(html);
+
+    reportViolations(results, "./append-report.txt", true);
+  })
   it('should have empty report violations', async () => {
     // pass anything that outputs html to axe
     const html = render()
