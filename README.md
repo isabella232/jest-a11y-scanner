@@ -109,6 +109,21 @@ You can find more information on this issue here:
 https://dequeuniversity.com/rules/axe/3.4/image-alt?application=axeAPI
 ```
 
+If you would like to append to an existing file, you can pass "true" to the `append` parameter of `reportViolations`. Default is false.
+
+```javascript
+const { axe, reportViolations } = require('jest-axe')
+
+it('writes to file', async () => {
+  const render = () => '<img src="#"/>'
+
+  const html = render()
+
+  // pass true as the third parameter to append, default is false
+  reportViolations(await axe(html), "./out_file.txt", true);
+})
+```
+
 ### Testing React
 
 ```javascript
