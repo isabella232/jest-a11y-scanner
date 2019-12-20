@@ -6,8 +6,7 @@
   "main": "src/index.js",
   "files": [
     "src/",
-    "extend-expect.js",
-    "README.md"
+    "extend-expect.js"
   ],
   "scripts": {
     "test": "jest"
