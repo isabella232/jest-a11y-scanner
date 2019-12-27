@@ -2,8 +2,11 @@
 
 ## Installation
 
+Add the `jest-a11y-scanner-4.2.0.tgz` file to the root of your project in the same folder as your `package.json`
+
+Install using the command below:
 ```bash
-npm install --save-dev jest-a11y-scanner
+npm install --save-dev jest-a11y-scanner-4.2.0.tgz
 ```
 
 ## Usage
