@@ -1,15 +1,15 @@
-# jest-axe
+# jest-a11y-scanner
 
 ## Installation
 
 ```bash
-npm install --save-dev jest-axe
+npm install --save-dev jest-a11y-scanner
 ```
 
 ## Usage
 
 ```javascript
-const { axe, toHaveNoViolations } = require('jest-axe')
+const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
 
 expect.extend(toHaveNoViolations)
 
@@ -25,7 +25,7 @@ it('should demonstrate this matcher`s usage', async () => {
 
 ![Screenshot of the resulting output from the usage example](example-cli.png)
 
-> Note, you can also require `'jest-axe/extend-expect'` which will call `expect.extend` for you.
+> Note, you can also require `'jest-a11y-scanner/extend-expect'` which will call `expect.extend` for you.
 > This is especially helpful when using the jest `setupTestFrameworkScriptFile` configuration.
 
 ### Custom Parameters
@@ -33,7 +33,7 @@ it('should demonstrate this matcher`s usage', async () => {
 You can turn erroring off by passing false to the first paramater of `toHaveNoViolations` if you want to output violations without failing tests. This is useful if you are encountering a lot of errors and they are preventing you from committing to CI.
 
 ```javascript
-const { axe, toHaveNoViolations } = require('jest-axe')
+const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
 
 expect.extend(toHaveNoViolations)
 
@@ -50,7 +50,7 @@ it('should demonstrate this matcher`s usage with erroring off', async () => {
 You can reduce the verbosity of output by passing false to the second paramater of `toHaveNoViolations` if you want to shorten the output of failing tests. This is useful if you are encountering a lot of errors and you want to clear up the console.
 
 ```javascript
-const { axe, toHaveNoViolations } = require('jest-axe')
+const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
 
 expect.extend(toHaveNoViolations)
 
@@ -69,7 +69,7 @@ it('should demonstrate this matcher`s usage with erroring off', async () => {
 If you are in a test and you want to write the axe results to a file, you can pass the axe results to the `reportViolations` function with a path to a file.
 
 ```javascript
-const { axe, reportViolations } = require('jest-axe')
+const { axe, reportViolations } = require('jest-a11y-scanner')
 
 it('writes to file', async () => {
   const render = () => '<img src="#"/>'
@@ -112,7 +112,7 @@ https://dequeuniversity.com/rules/axe/3.4/image-alt?application=axeAPI
 If you would like to append to an existing file, you can pass "true" to the `append` parameter of `reportViolations`. Default is false.
 
 ```javascript
-const { axe, reportViolations } = require('jest-axe')
+const { axe, reportViolations } = require('jest-a11y-scanner')
 
 it('writes to file', async () => {
   const render = () => '<img src="#"/>'
@@ -131,7 +131,7 @@ const React = require('react')
 const { render } =  require('react-dom')
 const App = require('./app')
 
-const { axe, toHaveNoViolations } = require('jest-axe')
+const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
 expect.extend(toHaveNoViolations)
 
 it('should demonstrate this matcher`s usage with react', async () => {
@@ -148,7 +148,7 @@ const React = require('react')
 const App = require('./app')
 
 const { mount } = require('enzyme')
-const { axe, toHaveNoViolations } = require('jest-axe')
+const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
 expect.extend(toHaveNoViolations)
 
 it('should demonstrate this matcher`s usage with enzyme', async () => {
@@ -166,7 +166,7 @@ const React = require('react')
 const App = require('./app')
 
 const { render, cleanup } = require('@testing-library/react')
-const { axe, toHaveNoViolations } = require('jest-axe')
+const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
 expect.extend(toHaveNoViolations)
 
 it('should demonstrate this matcher`s usage with react testing library', async () => {
@@ -188,7 +188,7 @@ it('should demonstrate this matcher`s usage with react testing library', async (
 const App = require('./App.vue')
 
 const { mount } = require('@vue/test-utils')
-const { axe, toHaveNoViolations } = require('jest-axe')
+const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
 expect.extend(toHaveNoViolations)
 
 it('should demonstrate this matcher`s usage with vue test utils', async () => {
@@ -206,7 +206,7 @@ const React = require('react')
 const App = require('./app')
 
 const { render, cleanup } = require('@testing-library/vue')
-const { axe, toHaveNoViolations } = require('jest-axe')
+const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
 expect.extend(toHaveNoViolations)
 
 it('should demonstrate this matcher`s usage with react testing library', async () => {
@@ -227,7 +227,7 @@ it('should demonstrate this matcher`s usage with react testing library', async (
 The `axe` function allows options to be set with the [same options as documented in axe-core](https://github.com/dequelabs/axe-core/blob/develop-2x/doc/API.md#options-parameter):
 
 ```javascript
-const { axe, toHaveNoViolations } = require('jest-axe')
+const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
 
 expect.extend(toHaveNoViolations)
 
@@ -262,7 +262,7 @@ This could be done in [Jest's setup step](https://facebook.github.io/jest/docs/e
 
 ```javascript
 // Global helper file (axe-helper.js)
-const { configureAxe } = require('jest-axe')
+const { configureAxe } = require('jest-a11y-scanner')
 
 const axe = configureAxe({
   rules: {
@@ -276,7 +276,7 @@ module.exports = axe
 
 ```javascript
 // Individual test file (test.js)
-const { toHaveNoViolations } = require('jest-axe')
+const { toHaveNoViolations } = require('jest-a11y-scanner')
 const axe = require('./axe-helper.js')
 
 expect.extend(toHaveNoViolations)
