@@ -147,6 +147,8 @@ it('should demonstrate this matcher`s usage with react', async () => {
 
 ### Testing React with [Enzyme](https://airbnb.io/enzyme/)
 
+Sometimes you will get errors on react code with child nodes when using Enzyme's `shallow` method. If that is the case, you may want to use the `mount` method shown below.
+
 ```javascript
 const React = require('react')
 const App = require('./app')
