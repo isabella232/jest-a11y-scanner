@@ -5,6 +5,7 @@
 Add the `jest-a11y-scanner-4.2.0.tgz` file to the root of your project in the same folder as your `package.json`
 
 Install using the command below:
+
 ```bash
 npm install --save-dev jest-a11y-scanner-4.2.0.tgz
 ```
@@ -108,7 +109,7 @@ Fix any of the following:
   Element's default semantics were not overridden with role="presentation"
   Element's default semantics were not overridden with role="none"
 
-You can find more information on this issue here: 
+You can find more information on this issue here:
 https://dequeuniversity.com/rules/axe/3.4/image-alt?application=axeAPI
 ```
 
