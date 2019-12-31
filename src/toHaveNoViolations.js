@@ -8,8 +8,9 @@ const { format } = require("date-fns");
  * Custom Jest expect matcher, that can check aXe results for violations.
  * @param {object} object requires an instance of aXe's results object
  * (https://github.com/dequelabs/axe-core/blob/develop-2x/doc/API.md#results-object)
- * @param {boolean} error default = true, whether this expect matcher should emit errors or not
- * @param {boolean} verbose default = true, whether or not the output should contain all the data or some of the data
+ * @param {boolean} options.error default = true, whether this expect matcher should emit errors or not
+ * @param {boolean} options.verbose default = true, whether or not the output should contain all the data or some of the data
+ * @param {boolean} options.report default = true, whether or not output will be written to a file in the "jest-a11y-reports" folder
  * @returns {object} returns Jest matcher object
  */
 const toHaveNoViolations = {

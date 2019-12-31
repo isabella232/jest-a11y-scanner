@@ -12,6 +12,9 @@ npm install --save-dev jest-a11y-scanner-4.2.0.tgz
 
 ## Usage
 
+Running `toHaveNoViolations` with no additional options will use the default options.
+These are: emitting error on test failure, verbose output, and writing results to a "jest-a11y-reports" directory when complete.
+
 ```javascript
 const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
 
@@ -34,7 +37,7 @@ it('should demonstrate this matcher`s usage', async () => {
 
 ### Custom Parameters
 
-You can turn erroring off by passing false to the first paramater of `toHaveNoViolations` if you want to output violations without failing tests. This is useful if you are encountering a lot of errors and they are preventing you from committing to CI.
+You can turn erroring off by setting the "error" flag to fals in the options of `toHaveNoViolations` if you want to output violations without failing tests. This is useful if you are encountering a lot of errors and they are preventing you from committing to CI.
 
 ```javascript
 const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
@@ -47,11 +50,11 @@ it('should demonstrate this matcher`s usage with erroring off', async () => {
   const html = render()
 
   // Pass false to prevent erroring, default is true when nothing is passed
-  expect(await axe(html)).toHaveNoViolations(false)
+  expect(await axe(html)).toHaveNoViolations({ error: false })
 })
 ```
 
-You can reduce the verbosity of output by passing false to the second paramater of `toHaveNoViolations` if you want to shorten the output of failing tests. This is useful if you are encountering a lot of errors and you want to clear up the console.
+You can reduce the verbosity of output by setting the "verbose" flag to false in the options of `toHaveNoViolations` if you want to shorten the output of failing tests. This is useful if you are encountering a lot of errors and you want to clear up the console.
 
 ```javascript
 const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
@@ -63,14 +66,34 @@ it('should demonstrate this matcher`s usage with erroring off', async () => {
 
   const html = render()
 
-  // Pass false to the second parameter to limit output, default is true when nothing is passed. You need to pass the first parameter to get access to the seconds parameter due to how jest expect handles passed parameters.
-  expect(await axe(html)).toHaveNoViolations(true, false)
+  // Pass false to restrict output verbosity, default is true when nothing is passed
+  expect(await axe(html)).toHaveNoViolations({ verbose: false })
 })
 ```
 
+If you don't want to write to file when the test is run, you can set the "report" flag to false in the options of `toHaveNoViolations`. Reports are default written to the "jest-a11y-reports" directory in the current working directory called "report-{timestamp}.txt" with duplicates given an incrementing number at the end of the filename. If the "jest-a11y-reports" directory doesn't exist, one will be created.
+
+```javascript
+const { axe, toHaveNoViolations } = require('jest-a11y-scanner')
+
+expect.extend(toHaveNoViolations)
+
+it('should demonstrate this matcher`s usage with erroring off', async () => {
+  const render = () => '<img src="#"/>'
+
+  const html = render()
+
+  // Pass false to prevent to writing to file, default is true when nothing is passed
+  expect(await axe(html)).toHaveNoViolations({ report: false })
+})
+```
+
+You may also use these option flags in any combination when calling `toHaveNoViolations`. Such as `expect(await axe(html)).toHaveNoViolations({ error: false, verbose: false })`. Since the report flag is omitted, it will default to true.
+All flags default to true when omitted from the "options" object.
+
 ### Writing Output to File
 
-If you are in a test and you want to write the axe results to a file, you can pass the axe results to the `reportViolations` function with a path to a file.
+If you are in a test and you want to write the axe results to a specific file, you can pass the axe results to the `reportViolations` function with a path to a file. This function will automatically add the ".txt" extension for you.
 
 ```javascript
 const { axe, reportViolations } = require('jest-a11y-scanner')
@@ -147,7 +170,7 @@ it('should demonstrate this matcher`s usage with react', async () => {
 
 ### Testing React with [Enzyme](https://airbnb.io/enzyme/)
 
-Sometimes you will get errors on react code with child nodes when using Enzyme's `shallow` method. If that is the case, you may want to use the `mount` method shown below.
+Sometimes you will get errors on react code with child nodes like `<MyComponent {props} />` when using Enzyme's `shallow` method. If that is the case, you may want to use the `mount` method shown below.
 
 ```javascript
 const React = require('react')

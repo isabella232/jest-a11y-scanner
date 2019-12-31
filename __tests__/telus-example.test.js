@@ -22,7 +22,7 @@ describe("Telus test series", () => {
 
     const results = await axe(html);
 
-    expect(results).toHaveNoViolations(false)
+    expect(results).toHaveNoViolations({ error: false })
   })
   it('should error and log concise output', async () => {
     // pass anything that outputs html to axe
@@ -30,7 +30,7 @@ describe("Telus test series", () => {
 
     const results = await axe(html);
 
-    expect(results).toHaveNoViolations(true, false)
+    expect(results).toHaveNoViolations({ verbose: false })
   })
   it('should not error and log concise output', async () => {
     // pass anything that outputs html to axe
@@ -38,7 +38,7 @@ describe("Telus test series", () => {
 
     const results = await axe(html);
 
-    expect(results).toHaveNoViolations(false, false)
+    expect(results).toHaveNoViolations({ error: false, verbose: false })
   })
   it('should report violations', async () => {
     // pass anything that outputs html to axe
