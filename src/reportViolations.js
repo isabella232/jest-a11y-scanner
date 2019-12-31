@@ -46,7 +46,9 @@ function reportViolations (results, path, append = false) {
     }).join(lineBreak + horizontalLine + lineBreak)
   }
 
-  const formatedViolations = reporter(violations)
+  let formatedViolations = reporter(violations)
+  
+  if (formatedViolations.length === 0) formatedViolations = `No violations found!`
 
   let message = `${horizontalLine + horizontalLine + lineBreak}Report Date: ${new Date() + lineBreak}Axe-Core Version: ${axeVersion +
     lineBreak +
@@ -56,11 +58,22 @@ function reportViolations (results, path, append = false) {
     lineBreak
   }`
 
-  if (formatedViolations.length === 0) message = `No violations found!`
 
-   if (!append) fs.writeFile(path, message, () => {})
+  const dir = "jest-a11y-reports";
+  if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+  }
+   if (!append) {
+     let fname = path;
+     let count = 0;
+     while (fs.existsSync(fname + '.txt')) {
+      count = count + 1;
+      fname = path + '-' + count;
+     }
+     fs.writeFileSync(fname + '.txt', message)
+  }
    else {
-    fs.appendFile(path, message, () => {});
+    fs.appendFileSync(path + '.txt', message);
    }
 }
 
