@@ -1,6 +1,8 @@
 'use strict'
 const chalk = require('chalk')
 const { printReceived, matcherHint } = require('jest-matcher-utils')
+const reportViolations = require("./reportViolations");
+const { format } = require("date-fns");
 
 /**
  * Custom Jest expect matcher, that can check aXe results for violations.
@@ -11,7 +13,18 @@ const { printReceived, matcherHint } = require('jest-matcher-utils')
  * @returns {object} returns Jest matcher object
  */
 const toHaveNoViolations = {
-  toHaveNoViolations (results, error = true, verbose = true) {
+  toHaveNoViolations (results, options) {
+    const opts = options || {
+      error: true,
+      verbose: true,
+      report: true,
+    }
+    const error = opts.error !== false ? true : false;
+    const verbose = opts.verbose !== false ? true : false
+    const report = opts.report !== false ? true : false;
+    
+    if (report) reportViolations(results, "./jest-a11y-reports/report-" + format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx"), false);    
+
     const violations = results.violations
 
     if (typeof violations === 'undefined') {
