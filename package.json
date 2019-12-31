@@ -1,6 +1,6 @@
 {
   "name": "jest-a11y-scanner",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "description": "Custom Jest matcher for aXe for testing accessibility",
   "repository": "dequelabs/jest-a11y-scanner",
   "main": "src/index.js",
