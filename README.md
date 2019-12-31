@@ -12,6 +12,8 @@ npm install --save-dev jest-a11y-scanner-4.2.0.tgz
 
 ## Usage
 
+Note: This will only work on components that will already be rendered when the axe scan is run.
+
 Running `toHaveNoViolations` with no additional options will use the default options.
 These are: emitting error on test failure, verbose output, and writing results to a "jest-a11y-reports" directory when complete.
 
