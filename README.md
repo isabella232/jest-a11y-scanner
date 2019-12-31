@@ -2,17 +2,19 @@
 
 ## Installation
 
-Add the `jest-a11y-scanner-4.2.0.tgz` file to the root of your project in the same folder as your `package.json`
+Add the `jest-a11y-scanner-4.3.0.tgz` file to the root of your project in the same folder as your `package.json`
 
 Install using the command below:
 
 ```bash
-npm install --save-dev jest-a11y-scanner-4.2.0.tgz
+npm install --save-dev jest-a11y-scanner-4.3.0.tgz
 ```
 
 ## Usage
 
-Note: This will only work on components that will already be rendered when the axe scan is run.
+Refer to this link when adding any a11y tests to your testing suite: <https://github.com/telus/reference-architecture/blob/master/testing/functional/unit.md>
+
+Note: This will only work on components that will already be rendered when the axe scan is run. Also ensure that you are not over-engineering your components for accessibillity. For example, having a link that has inner text and an aria-label which causes redundancy for the purpose of having accessible test.
 
 Running `toHaveNoViolations` with no additional options will use the default options.
 These are: emitting error on test failure, verbose output, and writing results to a "jest-a11y-reports" directory when complete.
